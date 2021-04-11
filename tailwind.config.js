@@ -7,5 +7,5 @@ module.exports = {
     cursor: ['hover'],
     margin: ['hover']
   },
-  plugins: [],
+  plugins: [require('tailwindcss-markdown')],
 }

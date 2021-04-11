@@ -11,5 +11,8 @@ module.exports = {
         .options({
           raw: true
         })
-    }
+    },
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/cuadernos'
+    : '/'
   }

@@ -4,26 +4,13 @@
       <div class="flex flex-row min-h-screen">
         <div class="sidebar-wrapper">
           <div class="sidebar h-screen overflow-hidden flex flex-col sticky top-0">
-              <div class="logo flex flex-row py-8 items-center">
-                <a href="#" class="logo block py-5 flex flex-col">
-                <img alt="Vue logo" src="@/assets/logo.png" class='w-12'/>
-                </a>
-                <h1 class='text-3xl ml-3 text-gray-700'>KAIT Docs</h1>
-              </div>
+              <SidebarHeaderComponent title="Notas" home_url="/"/>
               <VuePerfectScrollbar class="scroll-area" v-once :settings="settings">
                 <nav class='overflow-auto'>
                   <div class="nav-content overflow-hidden">
                     <ul class='menu'>
-                      <li v-for="(sidebarItem,index) in sidebarItems" :key="index" class='menu-item mt-2 '>
-                        <router-link to="#" class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{ sidebarItem.text }}</router-link>
-                        <ul class="submenu" v-if="sidebarItem.submenu.length > 0" >
-                          <li v-for="(submenu, indexsub) in sidebarItem.submenu" :key="indexsub" class='submenu-item py-3'>
-                            <router-link :to="submenu.url" class='font-light pl-5 hover:ml-1 block'>{{submenu.text}}</router-link>
-                          </li>
-                        </ul>
-                      </li>
                       <li v-for="(entry,index) in entries" :key="index" class='menu-item mt-2 '>
-                        <router-link to="#" class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{ entry.section }}</router-link>
+                        <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(entry.section)}}</h3>
                         <ul class="submenu" v-if="entry.entries.length > 0" >
                           <li v-for="(submenu, indexsub) in entry.entries" :key="indexsub" class='submenu-item py-3'>
                             <router-link :to="'/'+entry.section+'/'+submenu.id" class='font-light pl-5 hover:ml-1 block'>{{submenu.title}}</router-link>
@@ -51,17 +38,23 @@
   </div>
 </template>
 <script>
-import blogEntries from '@/statics/blog.json'
-import sidebarMenuItems from "./statics/sidebarItems.json";
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-
+import blogEntries from '@/statics/blog.json';
+import VuePerfectScrollbar from 'vue-perfect-scrollbar';
+import SidebarHeaderComponent from '@/components/Cuaderno/Header.vue'
 
 export default {
   mounted() {
     console.log(this.sidebarItems);
   },
   components: {
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
+    SidebarHeaderComponent
+  },
+  methods: {
+    //capitalize only the first letter of the string. 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   },
   computed: {
     entries() {
@@ -69,7 +62,7 @@ export default {
     },
     sidebarItems() {
       return sidebarMenuItems
-    }
+    },
   },
   data() {
     return {

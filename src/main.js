@@ -24,7 +24,6 @@ import KaitModal from './components/Modal/KaitModal.vue'
 import KaitPagination from './components/Pagination/KaitPagination.vue'
 import KaitRadio from './components/Radio/KaitRadio.vue'
 import KaitSelect from './components/Select/KaitSelect.vue'
-import DocsP from './components/DocsP.vue'
 
 import CodeHighlight from "vue-code-highlight/src/CodeHighlight.vue";
 
@@ -46,7 +45,6 @@ Vue.component('kait-modal', KaitModal)
 Vue.component('kait-pagination', KaitPagination)
 Vue.component('kait-radio', KaitRadio)
 Vue.component('kait-select', KaitSelect)
-Vue.component('docs-p', DocsP)
 Vue.component('code-highlight', CodeHighlight)
 
 new Vue({

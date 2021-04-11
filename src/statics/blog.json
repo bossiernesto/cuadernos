@@ -1,5 +1,17 @@
 [
   {
+    "description": "Compiler stuff",
+    "section": "compilers",
+    "entries": [
+      {
+        "id": "bootstrapping",
+        "date": "April 8, 2021",
+        "title": "Bootstrapping",
+        "description": "Definition of bootstrapping"
+      }
+    ]
+  },
+  {
     "description": "Test section",
     "section": "test",
     "entries": [
