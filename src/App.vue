@@ -22,6 +22,14 @@
                           </li>
                         </ul>
                       </li>
+                      <li v-for="(entry,index) in entries" :key="index" class='menu-item mt-2 '>
+                        <router-link to="#" class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{ entry.section }}</router-link>
+                        <ul class="submenu" v-if="entry.entries.length > 0" >
+                          <li v-for="(submenu, indexsub) in entry.entries" :key="indexsub" class='submenu-item py-3'>
+                            <router-link :to="'/'+entry.section+'/'+submenu.id" class='font-light pl-5 hover:ml-1 block'>{{submenu.title}}</router-link>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </nav>
@@ -43,7 +51,8 @@
   </div>
 </template>
 <script>
-import sidebarMenuItems from "./sidebarItems.json";
+import blogEntries from '@/statics/blog.json'
+import sidebarMenuItems from "./statics/sidebarItems.json";
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
 
@@ -54,9 +63,16 @@ export default {
   components: {
     VuePerfectScrollbar
   },
+  computed: {
+    entries() {
+      return blogEntries;
+    },
+    sidebarItems() {
+      return sidebarMenuItems
+    }
+  },
   data() {
     return {
-      sidebarItems: sidebarMenuItems,
       settings: {
         maxScrollbarLength: 60
       }

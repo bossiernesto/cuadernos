@@ -4,7 +4,6 @@ import router from "./router";
 import store from "./store";
 import './assets/scss/app.scss';
 import "vue-code-highlight/themes/prism.css";
-Vue.config.productionTip = false;
 
 // Components
 import KaitAvatar from './components/Avatar/KaitAvatar.vue'

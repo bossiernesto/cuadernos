@@ -1,8 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import BlogEntries from './../statics/blog.json';
 
 Vue.use(VueRouter);
+
+const blogRoutes = BlogEntries.map(entry => {
+  const section = entry.section
+  const children = entry.entries.map(child => ({
+    path: child.id,
+    name: child.id,
+    component: () => import(`./../markdowns/${section}/${child.id}.md`)
+  }))
+  return {
+    path: `/${section}`,
+    name: section,
+    component: () => import('./../views/Blog.vue'),
+    children
+  }
+})
+
+console.log(blogRoutes);
 
 const routes = [
   {
@@ -105,6 +123,7 @@ const routes = [
       },
     ],
   },
+  ...blogRoutes,
   {
     path:"*",
     component: () => import('./../views/Errors/404.vue')
