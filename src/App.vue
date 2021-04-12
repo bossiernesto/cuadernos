@@ -9,7 +9,7 @@
                 <nav class='overflow-auto'>
                   <div class="nav-content overflow-hidden">
                     <ul class='menu'>
-                      <li v-for="(entry,index) in entries" :key="index" class='menu-item mt-2 '>
+                      <li v-for="(entry,index) in noteEntries" :key="index" class='menu-item mt-2 '>
                         <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(entry.section)}}</h3>
                         <ul class="submenu" v-if="entry.entries.length > 0" >
                           <li v-for="(submenu, indexsub) in entry.entries" :key="indexsub" class='submenu-item py-3'>
@@ -26,7 +26,7 @@
         <div class="main-content px-16 flex flex-col flex-1 overflow-auto">
           <div class="block">
             <div class="content-header my-5">
-              <input type="text" class='border-b px-4 py-2 w-full' placeholder="Search..">
+              <input type="text" v-model="search.text" @input="search_text()" class='border-b px-4 py-2 w-full' placeholder="Search..">
             </div>
             <transition name="slide-fade">
               <router-view />
@@ -38,13 +38,13 @@
   </div>
 </template>
 <script>
-import blogEntries from '@/statics/blog.json';
+import noteEntries from '@/statics/blog.json';
 import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 import SidebarHeaderComponent from '@/components/Cuaderno/Header.vue'
 
 export default {
   mounted() {
-    console.log(this.sidebarItems);
+      console.log(noteEntries.flatMap(entry => entry.entries));
   },
   components: {
     VuePerfectScrollbar,
@@ -54,18 +54,19 @@ export default {
     //capitalize only the first letter of the string. 
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    search_text() {
+      console.log(this.search.text)
     }
   },
   computed: {
-    entries() {
-      return blogEntries;
-    },
-    sidebarItems() {
-      return sidebarMenuItems
-    },
+    noteEntries() {
+      return noteEntries;
+    }
   },
   data() {
     return {
+      search: { text: "" },
       settings: {
         maxScrollbarLength: 60
       }

@@ -5,7 +5,6 @@
     "entries": [
       {
         "id": "bootstrapping",
-        "date": "April 8, 2021",
         "title": "Bootstrapping",
         "description": "Definition of bootstrapping"
       }
@@ -17,7 +16,6 @@
     "entries": [
       {
         "id": "scala_unified_types",
-        "date": "April 11, 2021",
         "title": "Scala Unified Types",
         "description": ""
       }
@@ -29,7 +27,6 @@
     "entries": [
       {
         "id": "chapter-2",
-        "date": "April 11, 2021",
         "title": "Objects hacking on Ruby",
         "description": ""
       }
@@ -41,7 +38,6 @@
     "entries": [
       {
         "id": "jvm",
-        "date": "April 8, 2021",
         "title": "Java Virtual Machine",
         "description": "Overview of JVM"
       }
