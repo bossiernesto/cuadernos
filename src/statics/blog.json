@@ -12,14 +12,38 @@
     ]
   },
   {
-    "description": "Test section",
-    "section": "test",
+    "description": "Types",
+    "section": "types",
     "entries": [
       {
-        "id": "a",
+        "id": "scala_unified_types",
+        "date": "April 11, 2021",
+        "title": "Scala Unified Types",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "description": "Ruby hacking guide",
+    "section": "ruby-hacking",
+    "entries": [
+      {
+        "id": "chapter-2",
+        "date": "April 11, 2021",
+        "title": "Objects hacking on Ruby",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "description": "Virtual Machines stuff",
+    "section": "vm",
+    "entries": [
+      {
+        "id": "jvm",
         "date": "April 8, 2021",
-        "title": "Test",
-        "description": "Test 222"
+        "title": "Java Virtual Machine",
+        "description": "Overview of JVM"
       }
     ]
   }
