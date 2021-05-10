@@ -8,7 +8,6 @@ import CodeHighlight from "vue-code-highlight/src/CodeHighlight.vue";
 
 Vue.component('code-highlight', CodeHighlight)
 
-
 Vue.config.productionTip = false
 
 new Vue({

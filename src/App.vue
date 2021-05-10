@@ -5,22 +5,7 @@
         <div class="sidebar-wrapper">
           <div class="sidebar h-screen overflow-hidden flex flex-col sticky top-0">
             <SidebarHeaderComponent title="Notas" home_url="/"/>
-            <VuePerfectScrollbar class="scroll-area" :settings="settings">
-              <nav class='overflow-auto'>
-                <div class="nav-content overflow-hidden">
-                  <ul class="menu">
-                    <li v-for="(cat, catidx) in noteCategories" :key="catidx" class='menu-item py-3'>
-                      <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(cat)}}</h3>
-                      <ul>
-                        <li v-for="entry in filteredEntries.filter(entry => entry.section == cat)" :key="entry.id" class='entry-item py-3'>
-                          <router-link :to="'/'+entry.section+'/'+entry.md" class='font-light pl-5 hover:ml-1 block'>{{entry.title}}</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-            </VuePerfectScrollbar>
+            <Sidebar :searchString="this.searchString"/>
           </div>
         </div>
         <div class="main-content px-16 flex flex-col flex-1 overflow-auto">
@@ -38,40 +23,18 @@
   </div>
 </template>
 <script>
-import noteEntries from '@/statics/blog.json';
-import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 import SidebarHeaderComponent from '@/components/Cuaderno/Header.vue'
-
-const allEntries = noteEntries.entries
+import Sidebar from './components/Cuaderno/Sidebar.vue';
 
 export default {
   name: "Cuadernos",
   components: {
-    VuePerfectScrollbar,
-    SidebarHeaderComponent
-  },
-  computed: {
-    noteCategories() {
-      return [...new Set(this.filteredEntries.map(item => item.section))]
-    },
-    filteredEntries() {
-      const searchString = this.searchString.toLowerCase();
-      return this.entries.filter(entry => entry.title.toLowerCase().includes(searchString))
-    }
+    SidebarHeaderComponent,
+    Sidebar
   },
   data() {
     return {
-      entries: allEntries,
-      settings: {
-        maxScrollbarLength: 60
-      },
       searchString: '',
-    }
-  },
-  methods: {
-    //capitalize only the first letter of the string. 
-    capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
   }
 }
