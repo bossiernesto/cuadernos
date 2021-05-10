@@ -9,7 +9,7 @@
               <transition name="fadeHeight">
                 <ul class="submenu" v-if="filteredEntries.filter(entry => entry.section == cat)" >
                   <li v-for="(entry, entryidx) in filteredEntries.filter(entry => entry.section == cat)" :key="entryidx" class='entry-item py-3'>
-                    <router-link :to="'/'+entry.section+'/'+entry.id" class='font-light pl-5 hover:ml-1 block'>{{entry.title}}</router-link>
+                    <router-link :to="'/'+entry.section+'/'+entry.md" class='font-light pl-5 hover:ml-1 block'>{{entry.title}}</router-link>
                   </li>
                 </ul>
               </transition>
