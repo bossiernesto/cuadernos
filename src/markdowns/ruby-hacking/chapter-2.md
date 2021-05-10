@@ -13,9 +13,9 @@ What are the required conditions to make sure objects can exist? Many
 explanations can be given but in reality there are three conditions that must
 be obeyed:
 
-# Being able to differentiate itself from the rest (having an identity)
-# Being able to reply to requests (methods)
-# Keeping an internal state (instance variables)
+- Being able to differentiate itself from the rest (having an identity)
+- Being able to reply to requests (methods)
+- Keeping an internal state (instance variables)
 
 In this chapter, we are going to confirm these three features one by one.
 

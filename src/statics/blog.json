@@ -1,46 +1,28 @@
-[
-  {
-    "description": "Compiler stuff",
-    "section": "compilers",
-    "entries": [
-      {
-        "id": "bootstrapping",
-        "title": "Bootstrapping",
-        "description": "Definition of bootstrapping"
-      }
-    ]
-  },
-  {
-    "description": "Types",
-    "section": "types",
-    "entries": [
-      {
-        "id": "scala_unified_types",
-        "title": "Scala Unified Types",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "description": "Ruby hacking guide",
-    "section": "ruby-hacking",
-    "entries": [
-      {
-        "id": "chapter-2",
-        "title": "Objects hacking on Ruby",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "description": "Virtual Machines stuff",
-    "section": "vm",
-    "entries": [
-      {
-        "id": "jvm",
-        "title": "Java Virtual Machine",
-        "description": "Overview of JVM"
-      }
-    ]
-  }
-]
+{
+  "entries": [
+    {
+      "id": "bootstrapping",
+      "title": "Bootstrapping",
+      "section": "compilers",
+      "description": "Definition of bootstrapping"
+    },
+    {
+      "id": "scala_unified_types",
+      "title": "Scala Unified Types",
+      "section": "types",
+      "description": ""
+    },
+    {
+      "id": "chapter-2",
+      "title": "Objects hacking on Ruby",
+      "section": "ruby-hacking",
+      "description": ""
+    },
+    {
+      "id": "jvm",
+      "title": "Java Virtual Machine",
+      "section": "vm",
+      "description": "Overview of JVM"
+    }
+  ]
+}  

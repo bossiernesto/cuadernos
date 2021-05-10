@@ -6,32 +6,34 @@ import BlogEntries from './../statics/blog.json';
 
 Vue.use(VueRouter);
 
-const blogRoutes = BlogEntries.map(entry => {
-  const section = entry.section
-  const children = entry.entries.map(child => ({
-    path: child.id,
-    name: child.id,
-    component: () => import(`./../markdowns/${section}/${child.id}.md`)
-  }))
-  return {
-    path: `/${section}`,
-    name: section,
-    component: () => import('./../views/Blog.vue'),
-    children
-  }
-})
-
-console.log(blogRoutes);
+const blogRoutes = () => {
+  const entries = BlogEntries.entries
+  const sections = [...new Set(BlogEntries.entries.map(item => item.section))]
+  return sections.map(section => {
+    const filtered = entries.filter(entry => entry.section == section)
+    const children = filtered.map(child => ({
+      path: child.id,
+      name: child.id,
+      component: () => import(`./../markdowns/${section}/${child.id}.md`)
+    }))
+    return {
+      path: `/${section}`,
+      name: section,
+      component: () => import('./../views/Blog.vue'),
+      children
+    }
+  })
+}
 
 const routes = [
   {
     path:"/",
     component: () => import('./../views/Home.vue')
   },
-  ...blogRoutes,
+  ...blogRoutes(),
   {
     path:"*",
-    component: () => import('./../views/Errors/404.vue')
+    component: () => import('./../views/Errors/NotFound.vue')
   }
 ];
 

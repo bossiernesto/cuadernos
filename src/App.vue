@@ -8,16 +8,18 @@
               <VuePerfectScrollbar class="scroll-area" v-once :settings="settings">
                 <nav class='overflow-auto'>
                   <div class="nav-content overflow-hidden">
-                    <ul class='menu'>
-                      <li v-for="(entry,index) in noteEntries" :key="index" class='menu-item mt-2 '>
-                        <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(entry.section)}}</h3>
-                        <ul class="submenu" v-if="entry.entries.length > 0" >
-                          <li v-for="(submenu, indexsub) in entry.entries" :key="indexsub" class='submenu-item py-3'>
-                            <router-link :to="'/'+entry.section+'/'+submenu.id" class='font-light pl-5 hover:ml-1 block'>{{submenu.title}}</router-link>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+                    <form>
+                      <ul class="menu">
+                        <li v-for="(cat, catidx) in noteCategories" :key="catidx" class='menu-item py-3'>
+                          <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(cat)}}</h3>
+                          <ul class="submenu" v-if="search_entries.filter(entry => entry.section == cat).length > 0" >
+                            <li v-for="(entry, entryidx) in search_entries.filter(entry => entry.section == cat)" :key="entryidx" class='entry-item py-3'>
+                              <router-link :to="'/'+entry.section+'/'+entry.id" class='font-light pl-5 hover:ml-1 block'>{{entry.title}}</router-link>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </form>
                   </div>
                 </nav>
             </VuePerfectScrollbar>
@@ -42,13 +44,44 @@ import noteEntries from '@/statics/blog.json';
 import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 import SidebarHeaderComponent from '@/components/Cuaderno/Header.vue'
 
+const allEntries = noteEntries.entries
+
+function isEmpty(str) {
+    return (!str || str.length === 0 || str == undefined);
+}
+
 export default {
   mounted() {
-      console.log(noteEntries.flatMap(entry => entry.entries));
   },
   components: {
     VuePerfectScrollbar,
     SidebarHeaderComponent
+  },
+  computed: {
+    noteCategories() {
+      return [...new Set(allEntries.map(item => item.section))]
+    },
+    filteredEntries() {
+      if(isEmpty(this.search.text)) {
+        return allEntries;
+      }
+      return allEntries.filter((entry) => {
+        return entry.title.toLowerCase().includes(this.search.text);
+      })
+    }
+  },
+  data() {
+    return {
+      search_entries: allEntries,
+      allEntries: allEntries,
+      filterByName: {
+        
+      },
+      settings: {
+        maxScrollbarLength: 60
+      },
+      search: { text: "" },
+    }
   },
   methods: {
     //capitalize only the first letter of the string. 
@@ -56,20 +89,7 @@ export default {
         return string.charAt(0).toUpperCase() + string.slice(1);
     },
     search_text() {
-      console.log(this.search.text)
-    }
-  },
-  computed: {
-    noteEntries() {
-      return noteEntries;
-    }
-  },
-  data() {
-    return {
-      search: { text: "" },
-      settings: {
-        maxScrollbarLength: 60
-      }
+      this.search_entries = this.filteredEntries
     }
   }
 }
