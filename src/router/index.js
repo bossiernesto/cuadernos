@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import BlogEntries from '@/statics/blog.json';
+import { publicPath } from '@/../vue.config'
 
 Vue.use(VueRouter);
 
