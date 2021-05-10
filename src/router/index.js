@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import BlogEntries from './../statics/blog.json';
-
+import BlogEntries from '@/statics/blog.json';
 
 Vue.use(VueRouter);
 
@@ -11,15 +9,21 @@ const blogRoutes = () => {
   const sections = [...new Set(BlogEntries.entries.map(item => item.section))]
   return sections.map(section => {
     const filtered = entries.filter(entry => entry.section == section)
-    const children = filtered.map(child => ({
-      path: child.id,
-      name: child.id,
-      component: () => import(`./../markdowns/${section}/${child.id}.md`)
-    }))
+    const children = filtered.map(child => {
+      const component = (child.remote) ? import(`@/components/Cuaderno/RemoteMarkdown.vue`) : import(`@/markdowns/${section}/${child.id}.md`);
+      const props = (child.remote) ? {url: child.url} : {}
+
+      return {
+        path: child.id,
+        name: child.id,
+        component: () => component,
+        props: props
+      }
+    })
     return {
       path: `/${section}`,
       name: section,
-      component: () => import('./../views/Blog.vue'),
+      component: () => import('@/views/Blog.vue'),
       children
     }
   })
@@ -28,12 +32,12 @@ const blogRoutes = () => {
 const routes = [
   {
     path:"/",
-    component: () => import('./../views/Home.vue')
+    component: () => import('@/views/Home.vue')
   },
   ...blogRoutes(),
   {
     path:"*",
-    component: () => import('./../views/Errors/NotFound.vue')
+    component: () => import('@/views/Errors/NotFound.vue')
   }
 ];
 
