@@ -1,38 +1,39 @@
 {
   "entries": [
     {
-      "id": "bootstrapping",
+      "id": 0,
+      "md": "bootstrapping",
       "title": "Bootstrapping",
       "section": "compilers",
       "description": "Definition of bootstrapping",
       "remote": false
     },
     {
-      "id": "scala_unified_types",
+      "id": 1,
+      "md": "scala_unified_types",
       "title": "Scala Unified Types",
       "section": "types",
-      "description": "",
       "remote": false
     },
     {
-      "id": "chapter-2",
+      "id": 2,
+      "md": "chapter-2",
       "title": "Objects hacking on Ruby",
       "section": "ruby-hacking",
-      "description": "",
       "remote": false
     },
     {
-      "id": "jvm",
+      "id": 3,
+      "md": "jvm",
       "title": "Java Virtual Machine",
       "section": "vm",
-      "description": "Overview of JVM",
       "remote": false
     },
     {
-      "id": "Ruby guilds",
+      "id": 4,
+      "md": "Ruby guilds",
       "title": "Guilds/Ractor on  Ruby 3",
       "section": "ruby",
-      "description": "Overview of JVM",
       "url": "https://raw.githubusercontent.com/ruby/ruby/master/doc/ractor.md",
       "remote": true
     }

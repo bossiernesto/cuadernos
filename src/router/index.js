@@ -10,12 +10,12 @@ const blogRoutes = () => {
   return sections.map(section => {
     const filtered = entries.filter(entry => entry.section == section)
     const children = filtered.map(child => {
-      const component = (child.remote) ? import(`@/components/Cuaderno/RemoteMarkdown.vue`) : import(`@/markdowns/${section}/${child.id}.md`);
+      const component = (child.remote) ? import(`@/components/Cuaderno/RemoteMarkdown.vue`) : import(`@/markdowns/${section}/${child.md}.md`);
       const props = (child.remote) ? {url: child.url} : {}
 
       return {
-        path: child.id,
-        name: child.id,
+        path: child.md,
+        name: child.md,
         component: () => component,
         props: props
       }
