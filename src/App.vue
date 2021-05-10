@@ -5,13 +5,13 @@
         <div class="sidebar-wrapper">
           <div class="sidebar h-screen overflow-hidden flex flex-col sticky top-0">
             <SidebarHeaderComponent title="Notas" home_url="/"/>
-            <VuePerfectScrollbar class="scroll-area" v-once :settings="settings">
+            <VuePerfectScrollbar class="scroll-area" :settings="settings">
               <nav class='overflow-auto'>
                 <div class="nav-content overflow-hidden">
                   <ul class="menu">
                     <li v-for="(cat, catidx) in noteCategories" :key="catidx" class='menu-item py-3'>
                       <h3 class='font-semibold text-gray-700 hover:ml-1  duration-150 block'>{{capitalizeFirstLetter(cat)}}</h3>
-                      <ul v-if="filteredEntries.filter(entry => entry.section == cat)" class='my-list'>
+                      <ul>
                         <li v-for="entry in filteredEntries.filter(entry => entry.section == cat)" :key="entry.id" class='entry-item py-3'>
                           <router-link :to="'/'+entry.section+'/'+entry.md" class='font-light pl-5 hover:ml-1 block'>{{entry.title}}</router-link>
                         </li>
@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     noteCategories() {
-      return [...new Set(this.entries.map(item => item.section))]
+      return [...new Set(this.filteredEntries.map(item => item.section))]
     },
     filteredEntries() {
       const searchString = this.searchString.toLowerCase();
