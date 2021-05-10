@@ -49,13 +49,14 @@ const router = new VueRouter({
   mode: "history",
   base: publicPath,
   routes,
-  scrollBehavior: function (to) {
+  scrollBehavior (to) {
     if (to.hash) {
-      console.log(to.hash)
       return {
-        selector: to.hash
-      }
+        selector: to.hash,
+        behavior: 'smooth'
+      };
     }
+    return { x: 0, y: 0 };  // Go to the top of the page if no hash
   }
 });
 
