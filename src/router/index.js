@@ -38,7 +38,10 @@ const routes = [
   ...blogRoutes(),
   {
     path:"*",
-    component: () => import('@/views/Errors/NotFound.vue')
+    component: () => import('@/views/Errors/NotFound.vue'),
+    meta: {
+      layout: 'AppLayoutError'
+    },
   }
 ];
 
