@@ -36,6 +36,13 @@
       "section": "ruby",
       "url": "https://raw.githubusercontent.com/ruby/ruby/master/doc/ractor.md",
       "remote": true
+    },
+    {
+      "id": 5,
+      "md": "interconectando_nodos",
+      "title": "Interconectando Nodos en Elixir",
+      "section": "elixir",
+      "remote": false
     }
   ]
 }  
